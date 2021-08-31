@@ -1,0 +1,10 @@
+server:
+  port: 8888
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/comics
+    username: postgres
+    password: 123
+  jpa:
+    generate-ddl: true
