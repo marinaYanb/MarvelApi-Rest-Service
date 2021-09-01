@@ -12,7 +12,7 @@ public interface CharacterService {
 
     Character findCharacterById(Long id);
 
-    List<Character> findCharactersByComicId(Long Id);
+    List<Character> findCharactersByComicId(Long id);
 
     Character saveCharacter(Character character);
 }

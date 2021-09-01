@@ -31,9 +31,11 @@ public class Character {
         name = "comic_character",
         joinColumns = @JoinColumn(name = "character_id"),
         inverseJoinColumns = @JoinColumn(name = "comic_id"))
+    @JsonIgnore
     private Set<Comic> comics;
 
     public String getURLId() {
         return CHARACTER_URI + id;
     }
+
 }

@@ -89,7 +89,7 @@ public class ComicController {
     @ApiOperation("Обновление данных комиксов")
     @PutMapping("/comics/{comicId}")
     public ResponseEntity<ComicResponse> updateComic(@PathVariable Long comicId, @RequestBody Comic comic) {
-        Comic updatedComic = comic;
+        Comic updatedComic = new Comic();
         ComicResponse comicResponse = new ComicResponse();
         try {
             updatedComic = comicService.findComicById(comicId);
