@@ -1,6 +1,6 @@
+# Spring
 server:
   port: 8888
-
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/comics
@@ -8,3 +8,12 @@ spring:
     password: 123
   jpa:
     generate-ddl: true
+
+# App Properties
+com:
+  marvel:
+    comicsproject:
+      characterUri: "http://gateway.marvel.com/v1/public/characters/"
+      comicUri: "http://gateway.marvel.com/v1/public/comics/"
+      uploadedCharacterFolder: "/images/character/"
+      uploadedComicFolder: "/images/comic/"

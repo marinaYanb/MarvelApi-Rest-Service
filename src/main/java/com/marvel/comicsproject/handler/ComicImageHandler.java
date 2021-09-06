@@ -3,6 +3,7 @@ package com.marvel.comicsproject.handler;
 import com.marvel.comicsproject.domain.Comic;
 import com.marvel.comicsproject.service.ComicService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -11,12 +12,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
-import static com.marvel.comicsproject.constants.StringConst.UPLOADED_COMIC_FOLDER;
-
 @RequiredArgsConstructor
-public class ComicImageHandler implements ImageHandler<Comic>{
+public class ComicImageHandler implements ImageHandler<Comic> {
+    @Value("${com.marvel.comicsproject.uploadedComicFolder}")
+    private String uploadedComicFolder;
 
     private final ComicService comicService;
+
     @Override
     public Comic saveImageInObject(Comic comic, Path path) {
         comic.setThumbnail(path.toString());
@@ -31,7 +33,7 @@ public class ComicImageHandler implements ImageHandler<Comic>{
         String fileName = UUID.randomUUID() + file.getOriginalFilename();
         Path path = null;
         try {
-            path = Paths.get("src/main/resources"+ UPLOADED_COMIC_FOLDER + comic.getTitle() + "-" + fileName);
+            path = Paths.get("src/main/resources" + uploadedComicFolder + comic.getTitle() + "-" + fileName);
             File dest = new File(new File(path.toString()).getAbsolutePath());
             file.transferTo(dest);
         } catch (IOException e) {

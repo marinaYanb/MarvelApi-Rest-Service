@@ -6,12 +6,11 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
-
-import static com.marvel.comicsproject.constants.StringConst.COMIC_URI;
 
 @Data
 @Entity
@@ -34,7 +33,11 @@ public class Comic {
     @EqualsAndHashCode.Exclude
     private Set<Character> characters;
 
+    @JsonIgnore
+    @Value("${com.marvel.comicsproject.comicUri}")
+    private String comicUri;
+
     public String getURLId() {
-        return COMIC_URI + id;
+        return comicUri + id;
     }
 }
